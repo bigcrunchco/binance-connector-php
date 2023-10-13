@@ -1,5 +1,5 @@
 {
-    "name": "binance/binance-connector-php",
+    "name": "bigcrunch/binance-connector-php",
     "description": "A thin layer for Binance API in PHP",
     "homepage": "https://github.com/binance/binance-connector-php",
     "type": "library",
