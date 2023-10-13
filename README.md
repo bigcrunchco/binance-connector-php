@@ -7,7 +7,7 @@ This is a thin library that working as a connector to the Binance public API.
 
 ```php
 
-composer require binance/binance-connector-php
+composer require bigcrunchco/binance-connector-php
 
 ```
 
