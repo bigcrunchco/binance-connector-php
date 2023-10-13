@@ -39,5 +39,11 @@ trait SubAccount
     {
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount', $options);
     }
+
+    
+    public function subAccountApi(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi', $options);
+    }
     
 }
