@@ -45,5 +45,10 @@ trait SubAccount
     {
         return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi', $options);
     }
+
+    public function subAccountTransfer(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/transfer', $options);
+    }
     
 }
