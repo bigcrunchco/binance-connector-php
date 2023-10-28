@@ -62,5 +62,18 @@ trait SubAccount
     {
         return $this->signRequest('GET', '/sapi/v1/broker/info', $options);
     }
+
+
+    /**
+     * BEnable Universal Transfer Permission For Sub Account Api Key
+     *
+     * POST /sapi/v1/broker/subAccountApi/permission/universalTransfer
+     *
+     */
+    public function enableUniversalTransferPermission(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/permission/universalTransfer', $options);
+    }
+
     
 }
