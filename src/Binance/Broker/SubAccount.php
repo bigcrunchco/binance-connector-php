@@ -65,7 +65,7 @@ trait SubAccount
 
 
     /**
-     * BEnable Universal Transfer Permission For Sub Account Api Key
+     * Enable Universal Transfer Permission For Sub Account Api Key
      *
      * POST /sapi/v1/broker/subAccountApi/permission/universalTransfer
      *
@@ -74,6 +74,21 @@ trait SubAccount
     {
         return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/permission/universalTransfer', $options);
     }
+
+
+
+    /**
+     * Update IP Restriction for Sub-Account API key (For Master Account)
+     *
+     * POST /sapi/v2/broker/subAccountApi/ipRestriction (HMAC SHA256)
+     *
+     */
+    public function updateIPRestriction(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v2/broker/subAccountApi/ipRestriction', $options);
+    }
+
+
 
     
 }
