@@ -64,6 +64,20 @@ trait SubAccount
     }
 
 
+
+    /**
+     * Universal Transfer
+     *
+     * POST /sapi/v1/broker/universalTransfer
+     *
+     */
+    public function universalTransfer(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/universalTransfer', $options);
+    }
+
+
+
     /**
      * Query Universal Transfer History
      *
