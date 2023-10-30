@@ -65,6 +65,17 @@ trait SubAccount
 
 
     /**
+     * Query Universal Transfer History
+     *
+     * GET /sapi/v1/broker/universalTransfer
+     *
+     */
+    public function universalTransferHistory(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/universalTransfer', $options);
+    }
+
+    /**
      * Enable Universal Transfer Permission For Sub Account Api Key
      *
      * POST /sapi/v1/broker/subAccountApi/permission/universalTransfer
