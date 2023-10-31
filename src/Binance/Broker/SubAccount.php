@@ -65,6 +65,27 @@ trait SubAccount
 
 
 
+
+    /**
+     * Delete IP Restriction for Sub Account Api Key
+     *
+     * POST /sapi/v1/broker/subAccountApi/ipRestriction/ipList
+     *
+     * @param string subAccountId
+     * @param string subAccountApiKey
+     * @param string ipAddress
+     * @param long recvWindow
+     * @param long timestamp
+     *
+     *
+     * @param array $options
+     */
+    public function deleteIPRestrictionSubAccount(array $options = [])
+    {
+        return $this->signRequest('DELETE', '/sapi/v1/broker/subAccountApi/ipRestriction/ipList', $options);
+    }
+
+
     /**
      * Universal Transfer
      *
