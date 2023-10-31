@@ -63,8 +63,22 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/info', $options);
     }
 
-
-
+    /**
+     * Get IP Restriction for Sub Account Api Key
+     *
+     * GET /sapi/v1/broker/subAccountApi/ipRestriction
+     *
+     * @param string subAccountId
+     * @param string subAccountApiKey
+     * @param long recvWindow
+     * @param long timestamp
+     *
+     * @param array $options
+     */
+    public function getIPRestrictionSubAccount(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/ipRestriction', $options);
+    }
 
     /**
      * Delete IP Restriction for Sub Account Api Key
