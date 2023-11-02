@@ -40,15 +40,40 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount', $options);
     }
 
-    
+    /**
+     * Sub-account API
+     *
+     * POST /sapi/v1/broker/subAccountApi
+     *
+     * @param array $options
+     */
     public function subAccountApi(array $options = [])
     {
         return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi', $options);
     }
 
+    /**
+     * Sub-account Transfer
+     *
+     * POST /sapi/v1/broker/transfer
+     *
+     * @param array $options
+     */
     public function subAccountTransfer(array $options = [])
     {
         return $this->signRequest('POST', '/sapi/v1/broker/transfer', $options);
+    }
+
+    /**
+     * Sub-account Deposit History
+     *
+     * GET /sapi/v1/broker/subAccount/depositHist
+     *
+     * @param array $options
+     */
+    public function subAccountDepositHistory(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/depositHist', $options);
     }
 
 
