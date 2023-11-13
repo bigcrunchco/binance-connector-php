@@ -22,8 +22,67 @@ trait SubAccount
      */
     public function subAccountCreate(array $options = [])
     {
-
         return $this->signRequest('POST', '/sapi/v1/broker/subAccount', $options);
+    }
+
+    /**
+     * Enable Futures for Sub Account
+     *
+     * POST /sapi/v1/broker/subAccount/futures
+     *
+     * @param array $options
+     */
+    public function enableFuturesSubAccount(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/futures', $options);
+    }
+
+    /**
+     * Create Api Key for Sub Account
+     *
+     * POST /sapi/v1/broker/subAccountApi
+     *
+     * @param array $options
+     */
+    public function subAccountApi(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi', $options);
+    }
+
+    /**
+     * Delete Sub Account Api Key
+     *
+     * DELETE /sapi/v1/broker/subAccountApi
+     *
+     * @param array $options
+     */
+    public function deleteSubAccountApiKey(array $options = [])
+    {
+        return $this->signRequest('DELETE', '/sapi/v1/broker/subAccountApi', $options);
+    }
+
+    /**
+     * Query Sub Account Api Key
+     *
+     * GET /sapi/v1/broker/subAccountApi
+     *
+     * @param array $options
+     */
+    public function querySubAccountApiKey(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi', $options);
+    }
+
+    /**
+     * Change Sub Account Api Permission
+     *
+     * POST /sapi/v1/broker/subAccountApi/permission
+     *
+     * @param array $options
+     */
+    public function changeSubAccountApiPermission(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/permission', $options);
     }
 
     /**
@@ -38,18 +97,6 @@ trait SubAccount
     public function subAccountList(array $options = [])
     {
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount', $options);
-    }
-
-    /**
-     * Sub-account API
-     *
-     * POST /sapi/v1/broker/subAccountApi
-     *
-     * @param array $options
-     */
-    public function subAccountApi(array $options = [])
-    {
-        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi', $options);
     }
 
     /**
@@ -124,7 +171,6 @@ trait SubAccount
         return $this->signRequest('DELETE', '/sapi/v1/broker/subAccountApi/ipRestriction/ipList', $options);
     }
 
-
     /**
      * Universal Transfer
      *
@@ -135,8 +181,6 @@ trait SubAccount
     {
         return $this->signRequest('POST', '/sapi/v1/broker/universalTransfer', $options);
     }
-
-
 
     /**
      * Query Universal Transfer History
@@ -159,8 +203,6 @@ trait SubAccount
     {
         return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/permission/universalTransfer', $options);
     }
-
-
 
     /**
      * Update IP Restriction for Sub-Account API key (For Master Account)
