@@ -120,6 +120,25 @@ trait SubAccount
         return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/commission', $options);
     }
 
+    /**
+     * Change Sub Account USDT-Ⓜ Futures Commission Adjustment
+     *
+     * POST /sapi/v1/broker/subAccountApi/commission/futures
+     *
+     * @param string subAccountId
+     * @param string symbol
+     * @param int makerAdjustment
+     * @param int takerAdjustment
+     * @param long recvWindow
+     * @param long timestamp
+     *
+     * @param array $options
+     */
+    public function brokerSubAccountApiCommissionFutures(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/commission/futures', $options);
+    }
+
 
 
     /**
