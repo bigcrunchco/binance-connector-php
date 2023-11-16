@@ -99,6 +99,29 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount', $options);
     }
 
+
+    /**
+     * Change Sub Account Commission
+     *
+     * POST /sapi/v1/broker/subAccountApi/commission
+     *
+     * @param string subAccountId
+     * @param string makerCommission
+     * @param float takerCommission
+     * @param float marginMakerCommission
+     * @param float marginTakerCommission
+     * @param long recvWindow
+     * @param long timestamp
+     *
+     * @param array $options
+     */
+    public function brokerSubAccountApiCommission(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/commission', $options);
+    }
+
+
+
     /**
      * Sub-account Transfer
      *
