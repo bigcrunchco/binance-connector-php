@@ -134,9 +134,62 @@ trait SubAccount
      *
      * @param array $options
      */
-    public function brokerSubAccountApiCommissionFutures(array $options = [])
+    public function changeSubAccountCommissionFutures(array $options = [])
     {
         return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/commission/futures', $options);
+    }
+
+    /**
+     * Query Sub Account USDT-Ⓜ Futures Commission Adjustment
+     *
+     * GET /sapi/v1/broker/subAccountApi/commission/futures
+     *
+     * @param string subAccountId
+     * @param string symbol
+     * @param long recvWindow
+     * @param long timestamp
+     *
+     * @param array $options
+     */
+    public function querySubAccountCommissionFutures(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/commission/futures', $options);
+    }
+
+    /**
+     * Change Sub Account COIN-Ⓜ Futures Commission Adjustment
+     *
+     * GET /sapi/v1/broker/subAccountApi/commission/futures
+     *
+     * @param string subAccountId
+     * @param string pair
+     * @param int makerAdjustment
+     * @param int takerAdjustment
+     * @param long recvWindow
+     * @param long timestamp
+     *
+     * @param array $options
+     */
+    public function querySubAccountCommissionCoinFutures(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/commission/coinFutures', $options);
+    }
+
+    /**
+     * Query Sub Account COIN-Ⓜ Futures Commission Adjustment
+     *
+     * GET /sapi/v1/broker/subAccountApi/commission/coinFutures
+     *
+     * @param string subAccountId
+     * @param string pair
+     * @param long recvWindow
+     * @param long timestamp
+     *
+     * @param array $options
+     */
+    public function changeSubAccountCommissionCoinFutures(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/commission/coinFutures', $options);
     }
 
 
