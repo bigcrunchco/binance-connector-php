@@ -172,6 +172,27 @@ trait SubAccount
     }
 
     /**
+     * Query Broker Futures Commission Rebate Record
+     *
+     * GET /sapi/v1/broker/rebate/futures/recentRecord
+     *
+     * @param string futuresType
+     * @param string startTime
+     * @param string endTime
+     * @param long page
+     * @param long size
+     * @param long recvWindow
+     * @param long timestamp
+     *
+     *
+     * @param array $options
+     */
+    public function brokerRebateFuturesRecentRecord(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/rebate/futures/recentRecord', $options);
+    }
+
+    /**
      * Universal Transfer
      *
      * POST /sapi/v1/broker/universalTransfer
