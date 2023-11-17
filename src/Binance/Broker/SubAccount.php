@@ -231,54 +231,104 @@ trait SubAccount
     }
 
     /**
-     * Get IP Restriction for Sub Account Api Key
+     * Enable Or Disable BNB Burn for Sub Account Margin Interest
      *
-     * GET /sapi/v1/broker/subAccountApi/ipRestriction
-     *
-     * @param string subAccountId
-     * @param string subAccountApiKey
-     * @param long recvWindow
-     * @param long timestamp
+     * POST /sapi/v1/broker/subAccount/bnbBurn/marginInterest
      *
      * @param array $options
      */
-    public function getIPRestrictionSubAccount(array $options = [])
+    public function brokerSubAccountBnbBurnMarginInterest(array $options = [])
     {
-        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/ipRestriction', $options);
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/bnbBurn/marginInterest', $options);
     }
 
     /**
-     * Delete IP Restriction for Sub Account Api Key
+     * Get BNB Burn Status for Sub Account
      *
-     * POST /sapi/v1/broker/subAccountApi/ipRestriction/ipList
-     *
-     * @param string subAccountId
-     * @param string subAccountApiKey
-     * @param string ipAddress
-     * @param long recvWindow
-     * @param long timestamp
-     *
+     * GET /sapi/v1/broker/subAccount/bnbBurn/status
      *
      * @param array $options
      */
-    public function deleteIPRestrictionSubAccount(array $options = [])
+    public function brokerSubAccountBnbBurnStatus(array $options = [])
     {
-        return $this->signRequest('DELETE', '/sapi/v1/broker/subAccountApi/ipRestriction/ipList', $options);
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/bnbBurn/status', $options);
+    }
+    /**
+     * Get Sub Account Deposit History
+     *
+     * GET /sapi/v1/broker/subAccount/depositHist
+     *
+     * @param array $options
+     */
+    public function brokerSubAccountDepositHist(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/depositHist', $options);
+    }
+    /**
+     * Query Sub Account Spot Asset info
+     *
+     * GET /sapi/v1/broker/subAccount/spotSummary
+     *
+     * @param array $options
+     */
+    public function brokerSubAccountSpotSummary(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/spotSummary', $options);
+    }
+    /**
+     * Query Subaccount Margin Asset info
+     *
+     * GET /sapi/v1/broker/subAccount/marginSummary
+     *
+     * @param array $options
+     */
+    public function brokerSubAccountMarginSummary(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/marginSummary', $options);
+    }
+
+
+    /**
+     * Query Subaccount Futures Asset info
+     *
+     * GET /sapi/v1/broker/subAccount/futuresSummary
+     *
+     * @param array $options
+     */
+    public function brokerSubAccountFuturesSummaryV1(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/futuresSummary', $options);
+    }
+
+
+    /**
+     * Query Subaccount Futures Asset info (V2)
+     *
+     * GET /sapi/v2/broker/subAccount/futuresSummary
+     *
+     * @param array $options
+     */
+    public function brokerSubAccountFuturesSummaryV2(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v2/broker/subAccount/futuresSummary', $options);
+    }
+
+    /**
+     * Enable Leverage Token for Sub Account
+     *
+     * POST /sapi/v1/broker/subAccount/blvt
+     *
+     * @param array $options
+     */
+    public function brokerSubAccountBlvt(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/blvt', $options);
     }
 
     /**
      * Query Broker Futures Commission Rebate Record
      *
      * GET /sapi/v1/broker/rebate/futures/recentRecord
-     *
-     * @param string futuresType
-     * @param string startTime
-     * @param string endTime
-     * @param long page
-     * @param long size
-     * @param long recvWindow
-     * @param long timestamp
-     *
      *
      * @param array $options
      */
@@ -287,6 +337,30 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/rebate/futures/recentRecord', $options);
     }
 
+    /**
+     * Get IP Restriction for Sub Account Api Key
+     *
+     * GET /sapi/v1/broker/subAccountApi/ipRestriction
+     *
+     * @param array $options
+     */
+    public function getIPRestrictionSubAccount(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/ipRestriction', $options);
+    }
+
+
+    /**
+     * Delete IP Restriction for Sub Account Api Key
+     *
+     * DELETE /sapi/v1/broker/subAccountApi/ipRestriction/ipList
+     *
+     * @param array $options
+     */
+    public function deleteIPRestrictionSubAccount(array $options = [])
+    {
+        return $this->signRequest('DELETE', '/sapi/v1/broker/subAccountApi/ipRestriction/ipList', $options);
+    }
     /**
      * Universal Transfer
      *
@@ -325,6 +399,8 @@ trait SubAccount
      *
      * POST /sapi/v2/broker/subAccountApi/ipRestriction (HMAC SHA256)
      *
+     *
+     * @param array $options
      */
     public function updateIPRestriction(array $options = [])
     {
