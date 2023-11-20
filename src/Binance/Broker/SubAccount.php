@@ -194,6 +194,18 @@ trait SubAccount
     }
 
     /**
+     * Query Sub Account Transfer History（FUTURES）
+     *
+     * GET /sapi/v1/broker/transfer/futures
+     *
+     * @param array $options
+     */
+    public function brokerQuerySubAccountTransferHistory(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/transfer/futures', $options);
+    }
+
+    /**
      * Query Broker Commission Rebate Recent Record（Spot）
      *
      * GET /sapi/v1/broker/rebate/recentRecord
