@@ -232,6 +232,17 @@ trait SubAccount
 
 
     /**
+     * Query Broker Commission Rebate Recent Record（Spot）
+     *
+     * GET /sapi/v1/broker/rebate/recentRecord
+     *
+     * @param array $options
+     */
+    public function brokerCommissionRebateRecentRecord(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/rebate/recentRecord', $options);
+    }
+    /**
      * Enable Or Disable BNB Burn for Sub Account SPOT and MARGIN
      *
      * POST /sapi/v1/broker/subAccount/bnbBurn/spot
@@ -242,8 +253,6 @@ trait SubAccount
     {
         return $this->signRequest('POST', '/sapi/v1/broker/subAccount/bnbBurn/spot', $options);
     }
-
-
     /**
      * Enable Or Disable BNB Burn for Sub Account Margin Interest
      *
