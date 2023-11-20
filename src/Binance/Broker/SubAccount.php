@@ -90,8 +90,6 @@ trait SubAccount
      *
      * GET /sapi/v1/broker/subAccount
      *
-     * Weight(IP): 1
-     *
      * @param array $options
      */
     public function subAccountList(array $options = [])
@@ -99,19 +97,10 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount', $options);
     }
 
-
     /**
      * Change Sub Account Commission
      *
      * POST /sapi/v1/broker/subAccountApi/commission
-     *
-     * @param string subAccountId
-     * @param string makerCommission
-     * @param float takerCommission
-     * @param float marginMakerCommission
-     * @param float marginTakerCommission
-     * @param long recvWindow
-     * @param long timestamp
      *
      * @param array $options
      */
@@ -125,13 +114,6 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccountApi/commission/futures
      *
-     * @param string subAccountId
-     * @param string symbol
-     * @param int makerAdjustment
-     * @param int takerAdjustment
-     * @param long recvWindow
-     * @param long timestamp
-     *
      * @param array $options
      */
     public function changeSubAccountCommissionFutures(array $options = [])
@@ -143,11 +125,6 @@ trait SubAccount
      * Query Sub Account USDT-Ⓜ Futures Commission Adjustment
      *
      * GET /sapi/v1/broker/subAccountApi/commission/futures
-     *
-     * @param string subAccountId
-     * @param string symbol
-     * @param long recvWindow
-     * @param long timestamp
      *
      * @param array $options
      */
@@ -161,13 +138,6 @@ trait SubAccount
      *
      * GET /sapi/v1/broker/subAccountApi/commission/futures
      *
-     * @param string subAccountId
-     * @param string pair
-     * @param int makerAdjustment
-     * @param int takerAdjustment
-     * @param long recvWindow
-     * @param long timestamp
-     *
      * @param array $options
      */
     public function querySubAccountCommissionCoinFutures(array $options = [])
@@ -180,19 +150,12 @@ trait SubAccount
      *
      * GET /sapi/v1/broker/subAccountApi/commission/coinFutures
      *
-     * @param string subAccountId
-     * @param string pair
-     * @param long recvWindow
-     * @param long timestamp
-     *
      * @param array $options
      */
     public function changeSubAccountCommissionCoinFutures(array $options = [])
     {
         return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/commission/coinFutures', $options);
     }
-
-
 
     /**
      * Sub-account Transfer
@@ -218,18 +181,17 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount/depositHist', $options);
     }
 
-
     /**
      * Broker Account Information
      *
      * GET /sapi/v1/broker/info
      *
+     * @param array $options
      */
     public function subAccountInfo(array $options = [])
     {
         return $this->signRequest('GET', '/sapi/v1/broker/info', $options);
     }
-
 
     /**
      * Query Broker Commission Rebate Recent Record（Spot）
@@ -242,6 +204,7 @@ trait SubAccount
     {
         return $this->signRequest('GET', '/sapi/v1/broker/rebate/recentRecord', $options);
     }
+
     /**
      * Enable Or Disable BNB Burn for Sub Account SPOT and MARGIN
      *
@@ -253,6 +216,7 @@ trait SubAccount
     {
         return $this->signRequest('POST', '/sapi/v1/broker/subAccount/bnbBurn/spot', $options);
     }
+
     /**
      * Enable Or Disable BNB Burn for Sub Account Margin Interest
      *
@@ -276,6 +240,7 @@ trait SubAccount
     {
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount/bnbBurn/status', $options);
     }
+
     /**
      * Get Sub Account Deposit History
      *
@@ -287,6 +252,7 @@ trait SubAccount
     {
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount/depositHist', $options);
     }
+
     /**
      * Query Sub Account Spot Asset info
      *
@@ -298,6 +264,7 @@ trait SubAccount
     {
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount/spotSummary', $options);
     }
+
     /**
      * Query Subaccount Margin Asset info
      *
@@ -310,7 +277,6 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount/marginSummary', $options);
     }
 
-
     /**
      * Query Subaccount Futures Asset info
      *
@@ -322,7 +288,6 @@ trait SubAccount
     {
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount/futuresSummary', $options);
     }
-
 
     /**
      * Query Subaccount Futures Asset info (V2)
@@ -372,7 +337,6 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/ipRestriction', $options);
     }
 
-
     /**
      * Delete IP Restriction for Sub Account Api Key
      *
@@ -384,11 +348,13 @@ trait SubAccount
     {
         return $this->signRequest('DELETE', '/sapi/v1/broker/subAccountApi/ipRestriction/ipList', $options);
     }
+
     /**
      * Universal Transfer
      *
      * POST /sapi/v1/broker/universalTransfer
      *
+     * @param array $options
      */
     public function universalTransfer(array $options = [])
     {
@@ -400,6 +366,7 @@ trait SubAccount
      *
      * GET /sapi/v1/broker/universalTransfer
      *
+     * @param array $options
      */
     public function universalTransferHistory(array $options = [])
     {
@@ -411,6 +378,7 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccountApi/permission/universalTransfer
      *
+     * @param array $options
      */
     public function enableUniversalTransferPermission(array $options = [])
     {
@@ -421,7 +389,6 @@ trait SubAccount
      * Update IP Restriction for Sub-Account API key (For Master Account)
      *
      * POST /sapi/v2/broker/subAccountApi/ipRestriction (HMAC SHA256)
-     *
      *
      * @param array $options
      */
