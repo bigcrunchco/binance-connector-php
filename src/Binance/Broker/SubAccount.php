@@ -230,6 +230,20 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/info', $options);
     }
 
+
+    /**
+     * Enable Or Disable BNB Burn for Sub Account SPOT and MARGIN
+     *
+     * POST /sapi/v1/broker/subAccount/bnbBurn/spot
+     *
+     * @param array $options
+     */
+    public function brokerEnableDisableBNBBurnSubAccount(array $options = [])
+    {
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/bnbBurn/spot', $options);
+    }
+
+
     /**
      * Enable Or Disable BNB Burn for Sub Account Margin Interest
      *
