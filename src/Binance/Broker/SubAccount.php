@@ -516,9 +516,6 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount/depositHist', $options);
     }
 
-
-
-
     /**
      * Query Sub Account Spot Asset info
      *
@@ -560,11 +557,17 @@ trait SubAccount
      *
      * GET /sapi/v2/broker/subAccount/futuresSummary
      *
+     * @param int $futuresType
      * @param array $options
      */
-    public function brokerSubAccountFuturesSummaryV2(array $options = [])
+    public function brokerSubAccountFuturesSummaryV2(int $futuresType, array $options = [])
     {
-        return $this->signRequest('GET', '/sapi/v2/broker/subAccount/futuresSummary', $options);
+        return $this->signRequest('GET', '/sapi/v2/broker/subAccount/futuresSummary', array_merge(
+            $options,
+            [
+                'futuresType' => $futuresType
+            ]
+        ));
     }
 
     /**
@@ -572,11 +575,21 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccount/blvt
      *
+     * @param string $subAccountId
      * @param array $options
      */
-    public function brokerSubAccountBlvt(array $options = [])
+    public function brokerSubAccountBlvt(string $subAccountId, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/blvt', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/blvt', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId
+            ]
+        ));
     }
 
     /**
