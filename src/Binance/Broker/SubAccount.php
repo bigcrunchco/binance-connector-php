@@ -315,6 +315,19 @@ trait SubAccount
     }
 
     /**
+     * Broker Account Information
+     *
+     * Get /sapi/v1/broker/info
+     *
+     * @param array $options
+     */
+    public function subAccountInfo(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/info', $options);
+    }
+
+
+    /**
      * Sub-account Transfer
      *
      * POST /sapi/v1/broker/transfer
@@ -338,17 +351,7 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/subAccount/depositHist', $options);
     }
 
-    /**
-     * Broker Account Information
-     *
-     * GET /sapi/v1/broker/info
-     *
-     * @param array $options
-     */
-    public function subAccountInfo(array $options = [])
-    {
-        return $this->signRequest('GET', '/sapi/v1/broker/info', $options);
-    }
+
 
     /**
      * Query Sub Account Transfer History（SPOT）
