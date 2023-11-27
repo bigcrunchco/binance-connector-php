@@ -8,14 +8,9 @@ use Binance\Exception\MissingArgumentException;
 trait SubAccount
 {
     /**
-     * Create a Broker Sub-account (For Master Account)
+     * Create a Sub Account
      *
      * POST /sapi/v1/broker/subAccount
-     *
-     * - This request will generate a virtual sub account under your master account.
-     * - You need to enable "trade" option for the api key which requests this endpoint.
-     *
-     * Weight(IP): 1
      *
      * @param string $subAccountString
      * @param array $options
@@ -30,11 +25,26 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccount/futures
      *
+     * @param string $subAccountId
+     * @param string $futures
      * @param array $options
      */
-    public function enableFuturesSubAccount(array $options = [])
+    public function enableFuturesSubAccount(string  $subAccountId, string  $futures, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/futures', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subaccountId');
+        }
+        if (Strings::isEmpty($futures)) {
+            throw new MissingArgumentException('futures');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/futures', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'futures' => $futures
+            ]
+        ));
     }
 
     /**
