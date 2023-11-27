@@ -700,6 +700,7 @@ trait SubAccount
                 'fromAccountType' => $fromAccountType,
                 'toAccountType' => $toAccountType,
                 'asset' => $asset,
+                'amount' => $amount,
             ]
         ));
 
