@@ -187,11 +187,25 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccountApi/commission
      *
+     * @param string $subAccountId
+     * @param mixed $makerCommission
+     * @param mixed $takerCommission
      * @param array $options
      */
-    public function brokerSubAccountApiCommission(array $options = [])
+    public function brokerSubAccountApiCommission(string $subAccountId, $makerCommission, $takerCommission, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/commission', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/commission', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'makerCommission' => $makerCommission,
+                'takerCommission' => $takerCommission,
+            ]
+        ));
     }
 
     /**
