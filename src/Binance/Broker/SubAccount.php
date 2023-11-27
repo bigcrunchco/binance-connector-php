@@ -170,7 +170,7 @@ trait SubAccount
     }
 
     /**
-     * Query Sub-account List (For Master Account)
+     * Query Sub Account
      *
      * GET /sapi/v1/broker/subAccount
      *
