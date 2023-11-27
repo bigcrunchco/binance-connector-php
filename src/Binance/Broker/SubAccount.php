@@ -441,6 +441,10 @@ trait SubAccount
             throw new MissingArgumentException('subAccountId');
         }
 
+        if (Strings::isEmpty($spotBNBBurn)) {
+            throw new MissingArgumentException('spotBNBBurn');
+        }
+
         return $this->signRequest('POST', '/sapi/v1/broker/subAccount/bnbBurn/spot', array_merge(
             $options,
             [
@@ -449,6 +453,34 @@ trait SubAccount
             ]
         ));
     }
+
+    /**
+     * Enable Or Disable BNB Burn for Sub Account Margin Interest
+     *
+     * POST /sapi/v1/broker/subAccount/bnbBurn/marginInterest
+     *
+     * @param string $subAccountId
+     * @param string $interestBNBBurn
+     * @param array $options
+     */
+    public function brokerSubAccountBnbBurnMarginInterest(string $subAccountId, string $interestBNBBurn, array $options = [])
+    {
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+        if (Strings::isEmpty($interestBNBBurn)) {
+            throw new MissingArgumentException('interestBNBBurn');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/bnbBurn/marginInterest', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'interestBNBBurn' => $interestBNBBurn,
+            ]
+        ));
+    }
+
 
 
     /**
@@ -472,17 +504,7 @@ trait SubAccount
 
 
 
-    /**
-     * Enable Or Disable BNB Burn for Sub Account Margin Interest
-     *
-     * POST /sapi/v1/broker/subAccount/bnbBurn/marginInterest
-     *
-     * @param array $options
-     */
-    public function brokerSubAccountBnbBurnMarginInterest(array $options = [])
-    {
-        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/bnbBurn/marginInterest', $options);
-    }
+
 
     /**
      * Get BNB Burn Status for Sub Account
