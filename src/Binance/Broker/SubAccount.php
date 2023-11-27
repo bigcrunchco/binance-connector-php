@@ -676,11 +676,33 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/universalTransfer
      *
+     * @param string $fromAccountType
+     * @param string $toAccountType
+     * @param string $asset
+     * @param mixed $amount
      * @param array $options
      */
-    public function universalTransfer(array $options = [])
+    public function universalTransfer(string $fromAccountType, string $toAccountType, string $asset, $amount, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v1/broker/universalTransfer', $options);
+        if (Strings::isEmpty($fromAccountType)) {
+            throw new MissingArgumentException('fromAccountType');
+        }
+        if (Strings::isEmpty($toAccountType)) {
+            throw new MissingArgumentException('toAccountType');
+        }
+        if (Strings::isEmpty($asset)) {
+            throw new MissingArgumentException('asset');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/universalTransfer', array_merge(
+            $options,
+            [
+                'fromAccountType' => $fromAccountType,
+                'toAccountType' => $toAccountType,
+                'asset' => $asset,
+            ]
+        ));
+
     }
 
     /**
