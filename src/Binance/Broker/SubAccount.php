@@ -620,11 +620,27 @@ trait SubAccount
      *
      * GET /sapi/v1/broker/subAccountApi/ipRestriction
      *
+     * @param string $subAccountId
+     * @param string $subAccountApiKey
      * @param array $options
      */
-    public function getIPRestrictionSubAccount(array $options = [])
+    public function getIPRestrictionSubAccount(string $subAccountId, string $subAccountApiKey, array $options = [])
     {
-        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/ipRestriction', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+
+        if (Strings::isEmpty($subAccountApiKey)) {
+            throw new MissingArgumentException('subAccountApiKey');
+        }
+
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/ipRestriction', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'subAccountApiKey' => $subAccountApiKey
+            ]
+        ));
     }
 
     /**
