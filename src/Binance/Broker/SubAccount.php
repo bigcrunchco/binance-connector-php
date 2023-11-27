@@ -389,6 +389,30 @@ trait SubAccount
         ));
     }
 
+    /**
+     * Query Sub Account Transfer History（FUTURES）
+     *
+     * GET /sapi/v1/broker/transfer/futures
+     *
+     * @param string $subAccountId
+     * @param int $futuresType
+     * @param array $options
+     */
+    public function brokerQuerySubAccountTransferHistory(string $subAccountId, int  $futuresType, array $options = [])
+    {
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+
+        return $this->signRequest('GET', '/sapi/v1/broker/transfer/futures', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'futuresType' => $futuresType,
+            ]
+        ));
+    }
+
 
 
     /**
@@ -407,17 +431,7 @@ trait SubAccount
 
 
 
-    /**
-     * Query Sub Account Transfer History（FUTURES）
-     *
-     * GET /sapi/v1/broker/transfer/futures
-     *
-     * @param array $options
-     */
-    public function brokerQuerySubAccountTransferHistory(array $options = [])
-    {
-        return $this->signRequest('GET', '/sapi/v1/broker/transfer/futures', $options);
-    }
+
 
     /**
      * Query Broker Commission Rebate Recent Record（Spot）
