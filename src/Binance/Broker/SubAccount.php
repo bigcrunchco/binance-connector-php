@@ -12,7 +12,6 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccount
      *
-     * @param string $subAccountString
      * @param array $options
      */
     public function subAccountCreate(array $options = [])
@@ -32,7 +31,7 @@ trait SubAccount
     public function enableFuturesSubAccount(string  $subAccountId, string  $futures, array $options = [])
     {
         if (Strings::isEmpty($subAccountId)) {
-            throw new MissingArgumentException('subaccountId');
+            throw new MissingArgumentException('subAccountId');
         }
         if (Strings::isEmpty($futures)) {
             throw new MissingArgumentException('futures');
@@ -52,11 +51,26 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccountApi
      *
+     * @param string $subAccountId
+     * @param string $canTrade
      * @param array $options
      */
-    public function subAccountApi(array $options = [])
+    public function subAccountApi(string $subAccountId, string $canTrade, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+        if (Strings::isEmpty($canTrade)) {
+            throw new MissingArgumentException('canTrade');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'canTrade' => $canTrade
+            ]
+        ));
     }
 
     /**
