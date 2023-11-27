@@ -413,6 +413,42 @@ trait SubAccount
         ));
     }
 
+    /**
+     * Query Broker Commission Rebate Recent Record（Spot）
+     *
+     * GET /sapi/v1/broker/rebate/recentRecord
+     *
+     * @param array $options
+     */
+    public function brokerCommissionRebateRecentRecord(array $options = [])
+    {
+        return $this->signRequest('GET', '/sapi/v1/broker/rebate/recentRecord', $options);
+    }
+
+
+    /**
+     * Enable Or Disable BNB Burn for Sub Account SPOT and MARGIN
+     *
+     * POST /sapi/v1/broker/subAccount/bnbBurn/spot
+     *
+     * @param string $subAccountId
+     * @param string $spotBNBBurn
+     * @param array $options
+     */
+    public function brokerEnableDisableBNBBurnSubAccount(string $subAccountId, string $spotBNBBurn, array $options = [])
+    {
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/bnbBurn/spot', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'spotBNBBurn' => $spotBNBBurn,
+            ]
+        ));
+    }
 
 
     /**
@@ -433,29 +469,8 @@ trait SubAccount
 
 
 
-    /**
-     * Query Broker Commission Rebate Recent Record（Spot）
-     *
-     * GET /sapi/v1/broker/rebate/recentRecord
-     *
-     * @param array $options
-     */
-    public function brokerCommissionRebateRecentRecord(array $options = [])
-    {
-        return $this->signRequest('GET', '/sapi/v1/broker/rebate/recentRecord', $options);
-    }
 
-    /**
-     * Enable Or Disable BNB Burn for Sub Account SPOT and MARGIN
-     *
-     * POST /sapi/v1/broker/subAccount/bnbBurn/spot
-     *
-     * @param array $options
-     */
-    public function brokerEnableDisableBNBBurnSubAccount(array $options = [])
-    {
-        return $this->signRequest('POST', '/sapi/v1/broker/subAccount/bnbBurn/spot', $options);
-    }
+
 
     /**
      * Enable Or Disable BNB Burn for Sub Account Margin Interest
