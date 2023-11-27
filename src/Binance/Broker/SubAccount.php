@@ -264,7 +264,7 @@ trait SubAccount
     /**
      * Change Sub Account COIN-Ⓜ Futures Commission Adjustment
      *
-     * POST
+     * POST /sapi/v1/broker/subAccountApi/commission/coinFutures
      *
      * @param string $subAccountId
      * @param string $pair
@@ -290,7 +290,6 @@ trait SubAccount
                 'takerAdjustment' => $takerAdjustment,
             ]
         ));
-
     }
 
     /**
@@ -298,11 +297,21 @@ trait SubAccount
      *
      * GET /sapi/v1/broker/subAccountApi/commission/coinFutures
      *
+     * @param string $subAccountId
      * @param array $options
      */
-    public function changeSubAccountCommissionCoinFutures(array $options = [])
+    public function changeSubAccountCommissionCoinFutures(string $subAccountId, array $options = [])
     {
-        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/commission/coinFutures', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/commission/coinFutures', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId
+            ]
+        ));
     }
 
     /**
