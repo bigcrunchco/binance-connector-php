@@ -482,6 +482,30 @@ trait SubAccount
     }
 
 
+    /**
+     * Get BNB Burn Status for Sub Account
+     *
+     * GET /sapi/v1/broker/subAccount/bnbBurn/status
+     *
+     * @param string $subAccountId
+     * @param array $options
+     */
+    public function brokerSubAccountBnbBurnStatus(string $subAccountId, array $options = [])
+    {
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/bnbBurn/status', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId
+            ]
+        ));
+    }
+
+
+
 
     /**
      * Sub-account Deposit History
@@ -506,17 +530,6 @@ trait SubAccount
 
 
 
-    /**
-     * Get BNB Burn Status for Sub Account
-     *
-     * GET /sapi/v1/broker/subAccount/bnbBurn/status
-     *
-     * @param array $options
-     */
-    public function brokerSubAccountBnbBurnStatus(array $options = [])
-    {
-        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/bnbBurn/status', $options);
-    }
 
     /**
      * Get Sub Account Deposit History
