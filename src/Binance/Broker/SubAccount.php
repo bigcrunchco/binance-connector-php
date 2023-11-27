@@ -597,11 +597,22 @@ trait SubAccount
      *
      * GET /sapi/v1/broker/rebate/futures/recentRecord
      *
+     * @param int $futuresType
+     * @param int $startTime
+     * @param int $endTime
      * @param array $options
      */
-    public function brokerRebateFuturesRecentRecord(array $options = [])
+    public function brokerRebateFuturesRecentRecord(int $futuresType, int $startTime, int $endTime, array $options = [])
     {
-        return $this->signRequest('GET', '/sapi/v1/broker/rebate/futures/recentRecord', $options);
+
+        return $this->signRequest('GET', '/sapi/v1/broker/rebate/futures/recentRecord', array_merge(
+            $options,
+            [
+                'futuresType' => $futuresType,
+                'startTime' => $startTime,
+                'endTime' => $endTime,
+            ]
+        ));
     }
 
     /**
