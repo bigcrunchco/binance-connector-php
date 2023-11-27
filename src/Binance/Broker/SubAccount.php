@@ -504,11 +504,8 @@ trait SubAccount
         ));
     }
 
-
-
-
     /**
-     * Sub-account Deposit History
+     * Get Sub Account Deposit History
      *
      * GET /sapi/v1/broker/subAccount/depositHist
      *
@@ -521,27 +518,6 @@ trait SubAccount
 
 
 
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Get Sub Account Deposit History
-     *
-     * GET /sapi/v1/broker/subAccount/depositHist
-     *
-     * @param array $options
-     */
-    public function brokerSubAccountDepositHist(array $options = [])
-    {
-        return $this->signRequest('GET', '/sapi/v1/broker/subAccount/depositHist', $options);
-    }
 
     /**
      * Query Sub Account Spot Asset info
