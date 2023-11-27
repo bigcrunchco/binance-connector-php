@@ -363,6 +363,33 @@ trait SubAccount
         return $this->signRequest('GET', '/sapi/v1/broker/transfer', $options);
     }
 
+    /**
+     * Sub Account Transfer（FUTURES）
+
+     * POST /sapi/v1/broker/transfer/futures
+     *
+     * @param int $futuresType
+     * @param string $asset
+     * @param mixed $amount
+     * @param array $options
+     */
+    public function subAccountTransferFutures(int $futuresType, string $asset, $amount, array $options = [])
+    {
+        if (Strings::isEmpty($asset)) {
+            throw new MissingArgumentException('asset');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/transfer/futures', array_merge(
+            $options,
+            [
+                'futuresType' => $futuresType,
+                'asset' => $asset,
+                'amount' => $amount,
+            ]
+        ));
+    }
+
+
 
     /**
      * Sub-account Deposit History
