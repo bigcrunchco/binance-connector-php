@@ -78,11 +78,26 @@ trait SubAccount
      *
      * DELETE /sapi/v1/broker/subAccountApi
      *
+     * @param string $subAccountId
+     * @param string $subAccountApiKey
      * @param array $options
      */
-    public function deleteSubAccountApiKey(array $options = [])
+    public function deleteSubAccountApiKey(string $subAccountId, string $subAccountApiKey, array $options = [])
     {
-        return $this->signRequest('DELETE', '/sapi/v1/broker/subAccountApi', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+        if (Strings::isEmpty($subAccountApiKey)) {
+            throw new MissingArgumentException('subAccountApiKey');
+        }
+
+        return $this->signRequest('DELETE', '/sapi/v1/broker/subAccountApi', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'subAccountApiKey' => $subAccountApiKey
+            ]
+        ));
     }
 
     /**
