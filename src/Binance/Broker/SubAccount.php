@@ -317,7 +317,7 @@ trait SubAccount
     /**
      * Broker Account Information
      *
-     * Get /sapi/v1/broker/info
+     * GET /sapi/v1/broker/info
      *
      * @param array $options
      */
@@ -328,15 +328,27 @@ trait SubAccount
 
 
     /**
-     * Sub-account Transfer
+     * Sub Account Transfer（SPOT）
      *
      * POST /sapi/v1/broker/transfer
      *
+     * @param string $asset
+     * @param mixed $amount
      * @param array $options
      */
-    public function subAccountTransfer(array $options = [])
+    public function subAccountTransfer(string $asset, $amount, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v1/broker/transfer', $options);
+        if (Strings::isEmpty($asset)) {
+            throw new MissingArgumentException('asset');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/transfer', array_merge(
+            $options,
+            [
+                'asset' => $asset,
+                'amount' => $amount,
+            ]
+        ));
     }
 
     /**
