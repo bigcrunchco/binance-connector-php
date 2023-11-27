@@ -132,17 +132,48 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccountApi/permission
      *
+     * @param string $subAccountId
+     * @param string $subAccountApiKey
+     * @param string $canTrade
+     * @param string $marginTrade
+     * @param string $futuresTrade
      * @param array $options
      */
-    public function changeSubAccountApiPermission(array $options = [])
+    public function changeSubAccountApiPermission(string $subAccountId, string $subAccountApiKey, string $canTrade, string $marginTrade, string $futuresTrade, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/permission', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+        if (Strings::isEmpty($subAccountApiKey)) {
+            throw new MissingArgumentException('subAccountApiKey');
+        }
+        if (Strings::isEmpty($canTrade)) {
+            throw new MissingArgumentException('canTrade');
+        }
+        if (Strings::isEmpty($marginTrade)) {
+            throw new MissingArgumentException('marginTrade');
+        }
+        if (Strings::isEmpty($futuresTrade)) {
+            throw new MissingArgumentException('futuresTrade');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/permission', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'subAccountApiKey' => $subAccountApiKey,
+                'canTrade' => $canTrade,
+                'marginTrade' => $marginTrade,
+                'futuresTrade' => $futuresTrade,
+            ]
+        ));
     }
 
     /**
      * Query Sub-account List (For Master Account)
      *
      * GET /sapi/v1/broker/subAccount
+     *
      *
      * @param array $options
      */
