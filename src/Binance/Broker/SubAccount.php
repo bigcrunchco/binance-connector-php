@@ -237,7 +237,6 @@ trait SubAccount
                 'takerAdjustment' => $takerAdjustment,
             ]
         ));
-
     }
 
     /**
@@ -245,11 +244,21 @@ trait SubAccount
      *
      * GET /sapi/v1/broker/subAccountApi/commission/futures
      *
+     * @param string $subAccountId
      * @param array $options
      */
-    public function querySubAccountCommissionFutures(array $options = [])
+    public function querySubAccountCommissionFutures(string $subAccountId, array $options = [])
     {
-        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/commission/futures', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi/commission/futures', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+            ]
+        ));
+
     }
 
     /**
