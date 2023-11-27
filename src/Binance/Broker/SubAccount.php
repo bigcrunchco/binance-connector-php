@@ -723,11 +723,28 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccountApi/permission/universalTransfer
      *
+     * @param int $subAccountId
+     * @param string $subAccountApiKey
+     * @param string $canUniversalTransfer
      * @param array $options
      */
-    public function enableUniversalTransferPermission(array $options = [])
+    public function enableUniversalTransferPermission(int $subAccountId, string $subAccountApiKey, string $canUniversalTransfer, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/permission/universalTransfer', $options);
+        if (Strings::isEmpty($subAccountApiKey)) {
+            throw new MissingArgumentException('$subAccountApiKey');
+        }
+        if (Strings::isEmpty($canUniversalTransfer)) {
+            throw new MissingArgumentException('$canUniversalTransfer');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/permission/universalTransfer', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'subAccountApiKey' => $subAccountApiKey,
+                'canUniversalTransfer' => $canUniversalTransfer
+            ]
+        ));
     }
 
     /**
