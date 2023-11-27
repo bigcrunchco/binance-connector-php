@@ -731,10 +731,10 @@ trait SubAccount
     public function enableUniversalTransferPermission(int $subAccountId, string $subAccountApiKey, string $canUniversalTransfer, array $options = [])
     {
         if (Strings::isEmpty($subAccountApiKey)) {
-            throw new MissingArgumentException('$subAccountApiKey');
+            throw new MissingArgumentException('subAccountApiKey');
         }
         if (Strings::isEmpty($canUniversalTransfer)) {
-            throw new MissingArgumentException('$canUniversalTransfer');
+            throw new MissingArgumentException('canUniversalTransfer');
         }
 
         return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/permission/universalTransfer', array_merge(
@@ -752,11 +752,32 @@ trait SubAccount
      *
      * POST /sapi/v2/broker/subAccountApi/ipRestriction (HMAC SHA256)
      *
+     * @param string $subAccountId
+     * @param string $subAccountApiKey
+     * @param string $status
      * @param array $options
      */
-    public function updateIPRestriction(array $options = [])
+    public function updateIPRestriction(string $subAccountId, string $subAccountApiKey, string $status, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v2/broker/subAccountApi/ipRestriction', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+        if (Strings::isEmpty($subAccountApiKey)) {
+            throw new MissingArgumentException('subAccountApiKey');
+        }
+        if (Strings::isEmpty($status)) {
+            throw new MissingArgumentException('status');
+        }
+
+        return $this->signRequest('POST', '/sapi/v2/broker/subAccountApi/ipRestriction', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'subAccountApiKey' => $subAccountApiKey,
+                'status' => $status
+            ]
+        ));
+
     }
 
 
