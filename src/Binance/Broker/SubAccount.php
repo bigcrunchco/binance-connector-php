@@ -105,11 +105,26 @@ trait SubAccount
      *
      * GET /sapi/v1/broker/subAccountApi
      *
+     * @param string $subAccountId
+     * @param string $subAccountApiKey
      * @param array $options
      */
-    public function querySubAccountApiKey(array $options = [])
+    public function querySubAccountApiKey(string $subAccountId, string $subAccountApiKey, array $options = [])
     {
-        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+        if (Strings::isEmpty($subAccountApiKey)) {
+            throw new MissingArgumentException('subAccountApiKey');
+        }
+
+        return $this->signRequest('GET', '/sapi/v1/broker/subAccountApi', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'subAccountApiKey' => $subAccountApiKey
+            ]
+        ));
     }
 
     /**
