@@ -213,11 +213,31 @@ trait SubAccount
      *
      * POST /sapi/v1/broker/subAccountApi/commission/futures
      *
+     * @param string $subAccountId
+     * @param string $symbol
+     * @param int $makerAdjustment
+     * @param int $takerAdjustment
      * @param array $options
      */
-    public function changeSubAccountCommissionFutures(array $options = [])
+    public function changeSubAccountCommissionFutures(string $subAccountId, string $symbol, int $makerAdjustment, int  $takerAdjustment, array $options = [])
     {
-        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/commission/futures', $options);
+        if (Strings::isEmpty($subAccountId)) {
+            throw new MissingArgumentException('subAccountId');
+        }
+        if (Strings::isEmpty($symbol)) {
+            throw new MissingArgumentException('symbol');
+        }
+
+        return $this->signRequest('POST', '/sapi/v1/broker/subAccountApi/commission/futures', array_merge(
+            $options,
+            [
+                'subAccountId' => $subAccountId,
+                'symbol' => $symbol,
+                'makerAdjustment' => $makerAdjustment,
+                'takerAdjustment' => $takerAdjustment,
+            ]
+        ));
+
     }
 
     /**
